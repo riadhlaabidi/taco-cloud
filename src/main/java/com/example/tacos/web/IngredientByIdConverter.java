@@ -20,5 +20,4 @@ public class IngredientByIdConverter implements Converter<String, Ingredient> {
     public Ingredient convert(String id) {
         return ingredientRepository.findById(id).orElse(null);
     }
-
 }

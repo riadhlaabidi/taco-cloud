@@ -4,9 +4,11 @@ import com.example.tacos.Ingredient;
 import com.example.tacos.Ingredient.Type;
 import com.example.tacos.Order;
 import com.example.tacos.Taco;
+import com.example.tacos.User;
 import com.example.tacos.data.IngredientRepository;
 import com.example.tacos.data.TacoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -43,7 +45,7 @@ public class DesignTacoController {
     }
 
     @GetMapping
-    public String showDesignForm(Model model) {
+    public String showDesignForm(Model model, @AuthenticationPrincipal User user) {
         List<Ingredient> ingredients = new ArrayList<>();
         ingredientRepository.findAll().forEach(ingredients::add);
 
@@ -52,6 +54,9 @@ public class DesignTacoController {
             model.addAttribute(type.toString().toLowerCase(),
                     filterByType(ingredients, type));
         }
+
+        model.addAttribute("user", user);
+
         return "design";
     }
 
