@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:fragment="scripts">
+  <title>Taco Cloud</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <script th:src="@{webjars/jquery/3.2.1/jquery.js}"></script>
+  <script th:src="@{webjars/mustachejs/2.2.1/mustache.min.js}"></script>
+</head>
+<body>
+<div layout:fragment="header">
+  <a th:href="@{/}">
+    <img th:src="@{/images/taco-cloud.png}" class="logo"
+         alt="Taco logo" src="../static/images/taco-cloud.png"/>
+  </a>
+  <div class="header">
+    <form method="POST" th:action="@{/logout}" id="logoutForm">
+          <span sec:authentication="principal.fullname"
+                sec:authorize="isAuthenticated()">USERNAME</span>
+      <input type="submit" value="Logout"/>
+    </form>
+  </div>
+</div>
+
+<section layout:fragment="main">
+  Main content goes here
+</section>
+
+
+<div layout:fragment="footer" class="footer">
+</div>
+
+</body>
+</html>
