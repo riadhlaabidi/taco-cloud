@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    password: riadh
+    username: riadh
+
+  data:
+    rest:
+      base-path: /api
+
+taco:
+  orders:
+    pageSize: 10
+
+discount:
+  codes:
+    riadh20: 20
+
+
